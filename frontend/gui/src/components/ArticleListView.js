@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import Article from "../containers/Article";
-import List from "@material-ui/core/List";
+import { Paper, List, Grid } from "@material-ui/core";
 import axios from "axios";
-
+import CustomForm from "../containers/Form";
 export default function ArticleListView() {
   const [dataState, setDataState] = useState([]);
 
@@ -17,16 +17,31 @@ export default function ArticleListView() {
   }, []);
   console.log(dataState);
   return (
-    <List>
-      {dataState.map((value, index) => (
-        <Article
-          key={index}
-          id={value.id}
-          title={value.title}
-          content={value.content}
-          author={value.author}
+    <Grid container spacing={2}>
+      <Grid item>
+        <Paper elevation={1}>
+          <List>
+            {dataState.map((value, index) => (
+              <Article
+                key={index}
+                index={index}
+                id={value.id}
+                title={value.title}
+                content={value.content}
+                author={value.author}
+              />
+            ))}
+          </List>
+        </Paper>
+      </Grid>
+      <Grid item xs={12}>
+        <CustomForm
+          requestType="post"
+          articleID={null}
+          btnText="Create"
+          formLable="Create New Blog"
         />
-      ))}
-    </List>
+      </Grid>
+    </Grid>
   );
 }

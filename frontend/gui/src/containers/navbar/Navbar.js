@@ -1,43 +1,31 @@
 import React from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import IconButton from "@material-ui/core/IconButton";
-import Typography from "@material-ui/core/Typography";
-import InputBase from "@material-ui/core/InputBase";
-import MenuIcon from "@material-ui/icons/Menu";
-import SearchIcon from "@material-ui/icons/Search";
+import { Typography, Button, Grid } from "@material-ui/core";
+
 import { navBarStyles } from "../../assets/jss/navbarStyle";
 
 export default function Navbar() {
   const classes = navBarStyles();
+
   return (
-    <AppBar position="static">
-      <Toolbar>
-        <IconButton
-          edge="start"
-          className={classes.menuButton}
-          color="inherit"
-          aria-label="open drawer"
-        >
-          <MenuIcon />
-        </IconButton>
-        <Typography className={classes.title} variant="h6" noWrap>
-          Kartikeya
-        </Typography>
-        <div className={classes.search}>
-          <div className={classes.searchIcon}>
-            <SearchIcon />
-          </div>
-          <InputBase
-            placeholder="Search…"
-            classes={{
-              root: classes.inputRoot,
-              input: classes.inputInput,
-            }}
-            inputProps={{ "aria-label": "search" }}
-          />
-        </div>
-      </Toolbar>
-    </AppBar>
+    <div className={classes.root}>
+      <AppBar position="static">
+        <Toolbar>
+          <Grid container spacing={1}>
+            <Grid item>
+              <Typography variant="h6" noWrap style={{ flexGrow: 1 }}>
+                Kartikeya
+              </Typography>
+            </Grid>
+            <Grid item>
+              <Button variant="contained" color="secondary" href="/">
+                Blogs
+              </Button>
+            </Grid>
+          </Grid>
+        </Toolbar>
+      </AppBar>
+    </div>
   );
 }
